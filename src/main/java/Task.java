@@ -1,7 +1,5 @@
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Task {
 
@@ -44,12 +42,13 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", deadlineTime=" + deadlineTime +
-                ", assignedUser='" + assignedUser + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder("[ ");
+        sb.append(name).append(", ");
+        sb.append(description).append(", ");
+        sb.append(deadlineTime).append(", ");
+        sb.append(assignedUser).append(" ]");
+
+        return sb.toString();
     }
 
     @Override
@@ -57,6 +56,7 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
+
         return Objects.equals(name, task.name) && Objects.equals(description, task.description) && Objects.equals(deadlineTime, task.deadlineTime) && Objects.equals(assignedUser, task.assignedUser);
     }
 
@@ -64,4 +64,5 @@ public class Task {
     public int hashCode() {
         return Objects.hash(name, description, deadlineTime, assignedUser);
     }
+
 }

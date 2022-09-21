@@ -22,13 +22,17 @@ public class App {
         switch (actionFromUser) {
             case 1: {
                 CsvManagerImpl.saveToStorage(getTaskDetails());
+                break;
             }
             case 2: {
-//                CsvManagerImpl.displayTasksInCSVFile(getTaskDetails());
+                CsvManagerImpl.readingTodoListAndDisplayingIt();
+                break;
             }
 //            case 3 -> updateExisitingTask();
 //            case 4 -> deleteTaskByTaskName();
-            case 5: { System.exit(EXIT_STATUS_SUCCESS);
+            case 5: {
+                System.exit(EXIT_STATUS_SUCCESS);
+                break;
             }
         }
     }

@@ -1,4 +1,5 @@
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
@@ -29,7 +30,32 @@ public class CsvManagerImpl {
         }
     }
 
-    public static void displayTasksInCSVFile() throws IOException {
+    public static void readingTodoListAndDisplayingIt() {
+        String outputFilePath = "./storage.csv";
+        try (
+                Reader reader = Files.newBufferedReader(Paths.get(outputFilePath));
+                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
+            )
+        {
+            System.out.println("=====TASK LIST=====");
+            for (CSVRecord csvRecord : csvParser) {
+                String taskTitle = csvRecord.get(0);
+                String taskDescription = csvRecord.get(1);
+                String taskDeadline = csvRecord.get(2);
+                String assignedUser = csvRecord.get(3);
+
+                System.out.println(csvRecord.toString());
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+/*    public static void displayTasksInCSVFile() throws IOException {
         try {
             String[] HEADERS = { "author", "title"};
             Reader reader = new FileReader("./storage.csv");
@@ -46,7 +72,7 @@ public class CsvManagerImpl {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 
 }
